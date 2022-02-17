@@ -25,7 +25,7 @@
 __Instalar dependencias (npm install)__
 > Ubicate en le directorio que descargaste y via consola o terminal ejecuta el siguiente comando
 
-`npm install` 
+`npm install --unsafe-perm --ignore-scripts` 
 
 __Configurar .env__
 > Con el editor de texto crea un archivo `.env` el cual debes de guiarte del archivo `.env.example`

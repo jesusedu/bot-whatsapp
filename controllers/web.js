@@ -1,5 +1,6 @@
 const fs = require('fs')
 const { sendMessage } = require('../controllers/send')
+const SESSION_FILE_PATH = `${__dirname}/../session.json`;
 
 const sendMessagePost = (req, res) => {
     const { message, number } = req.body
@@ -10,7 +11,11 @@ const sendMessagePost = (req, res) => {
 
 const getQr = (req, res) => {
     res.writeHead(200, { 'content-type': 'image/svg+xml' });
-    fs.createReadStream(`${__dirname}/../mediaSend/qr-code.svg`).pipe(res);
+    if(!fs.existsSync(SESSION_FILE_PATH)){
+        fs.createReadStream(`${__dirname}/../mediaSend/qr-code.svg`).pipe(res);
+    } else {
+        fs.createReadStream(`${__dirname}/../mediaSend/Image-Not-Found.svg`).pipe(res);
+    }
 }
 
 module.exports = { sendMessagePost, getQr }
